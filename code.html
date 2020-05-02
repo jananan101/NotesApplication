@@ -29,6 +29,13 @@
 				color:white;
 			}
 		</style>
+
+		<script type="text/javascript">
+			function onClick(){
+				var click = document.getElementById("note").value;
+
+			}
+		</script>
 	</head>
 	<body>
 		<header>
@@ -36,7 +43,7 @@
 		</header>
 		
 		<input id="note" placeholder="Enter your note">
-		<button id ="Submit">Submit</button>
+		<button onclick="onClick()" id ="Submit">Submit</button>
 
 	</body>
 
