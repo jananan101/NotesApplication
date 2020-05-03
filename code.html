@@ -41,7 +41,7 @@
 		<input id="note" placeholder="Enter your Note">
 		<button onclick= "onClick()" id ="submit">Submit</button>
 
-		<table id="table"></table>
+		
 
 		<script type="text/javascript">
 			
@@ -60,8 +60,8 @@
 			  firebase.initializeApp(firebaseConfig);
 			  
 
-			  var db = firebase.firestore();
-			  var ref_to_doc = db.doc("data/notes");
+			  var db_start = firebase.firestore();
+			  var ref_to_doc = db_start.doc("data/notes");
 
 			  //controls 
 			  
@@ -73,12 +73,7 @@
 				  	ref_to_doc.set({
 				  		note: write
 				  	}); 
-				  	//write to table 
-				  	var write_to_table = document.getElementById("table");
-				  	var row = write_to_table.row(0);
-				  	var insertNote = row.insertCell(0);
-				  	var visual = insertNote.innerHTML = write;
-			  }
+				  	
 
 
 		</script>
