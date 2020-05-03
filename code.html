@@ -4,30 +4,49 @@
 		<title>Notes Application</title>
 		<style>
 			body{
-				background-color: #6e9170;
+				background-color: #FDC635;
 			}
 			h1{
-				background-color: #9e9e61;
+				background-color: #FDB802;
 				font-family: Comic Sans MS;
 				padding:40px;
 				text-align: center;
 				font-size: 40px;
+				margin:auto;
 				color:white;
 			}
 
 			input{
-				background-color: #6e9170;
-				padding:40px;
+				background-color: #FDB802;
+				padding:20px;
 				text-align: center;
-				font-size: 40px;
-				color:black;
+				font-size: 20px;
+				color:white;
+				font-family: Comic Sans MS;
+				margin:auto;
 			}
 			button{
-				background-color: #9e9e61;
+				background-color: #FDB802;
 				padding:10px;
 				text-align: center;
 				font-size: 20px;
 				color:white;
+				font-family: Comic Sans MS;
+				margin:auto;
+			}
+
+			table{
+				color:white;
+				font-size: 20px;
+				font-family: Comic Sans MS;
+				margin:auto;
+			}
+			p{
+				color:white;
+				font-size: 40px;
+				font-family: Comic Sans MS;
+				margin:auto;
+				text-align: center;
 			}
 		</style>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -35,12 +54,12 @@
 		
 	</head>
 	<body>
-		
 
 		<h1>The Note</h1>
 		<input id="note" placeholder="Enter your Note">
 		<button onclick= "onClick()" id ="submit">Submit</button>
-
+		<p>Tasks to do</p>
+		<table id="table_1"></table>
 		
 
 		<script type="text/javascript">
@@ -56,28 +75,35 @@
 			    appId: "",
 			    measurementId: ""
 			  };
+
 			  // Initialize Firebase
-			  firebase.initializeApp(firebaseConfig);
-			  
+			  firebase.initializeApp(firebaseConfig);			  
 
 			  var db_start = firebase.firestore();
-			  var ref_to_doc = db_start.doc("data/notes");
+			  var ref_to_doc = db_start.collection('data');
 
 			  //controls 
 			  
 			  function onClick(){
-				 	//console.log("submit");
 				 	
 				  	var write = document.getElementById("note").value;
-				  	alert("entered");
-				  	ref_to_doc.set({
+				  	//writes to document
+				  	ref_to_doc.add({
 				  		note: write
-				  	}); 
-				  	
+				  	})
+					.then(function() {
+					    console.log("Document successfully written!");
+					})
+					.catch(function(error) {
+					    console.error("Error writing document: ", error);
+					}); 
 
-
+					//writes to table so clients can see
+				  	var table_add = document.getElementById("table_1");
+				  	var tr = table_add.insertRow(0);
+				  	var td = tr.insertCell(0);
+				  	td.innerHTML = write;
+			}	  	
 		</script>
-
 	</body>
-
 </html>
