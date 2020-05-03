@@ -90,13 +90,7 @@
 				  	//writes to document
 				  	ref_to_doc.add({
 				  		note: write
-				  	})
-					.then(function() {
-					    console.log("Document successfully written!");
-					})
-					.catch(function(error) {
-					    console.error("Error writing document: ", error);
-					}); 
+				  	});
 
 					//writes to table so clients can see
 				  	var table_add = document.getElementById("table_1");
